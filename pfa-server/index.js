@@ -14,6 +14,7 @@ app.use(cors({
 }));
 
 
+//modification 
 
 mongoose.connect('mongodb://127.0.0.1:27017/templates', {  // BADLOU BESM EL BASE DE DONNEE
   useNewUrlParser: true,
