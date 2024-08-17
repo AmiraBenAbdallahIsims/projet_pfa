@@ -1,0 +1,316 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  height: 100%;
+}
+
+/*login*/
+.login-container {
+  display: flex;
+  height: 100vh;
+}
+
+.login-left {
+  width: 50%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.login-right {
+  width: 50%;
+  background: linear-gradient(135deg, #520852 0%, #df4adf 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 40px;
+}
+
+.logo img {
+  width: 170px; /* Adjust the size to fit your design */
+  margin-bottom: 30px;
+}
+
+.form {
+  width: 100%;
+  max-width: 300px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.large-btn {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  background: linear-gradient(135deg, #520852 0%, #df4adf 100%);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.forgot-password {
+  display: block;
+  margin: 10px 0;
+  text-align: center;
+  color: #6a11cb;
+  text-decoration: none;
+}
+
+.signup-text {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.small-btn {
+  width: 40%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #df4adf;
+  color:#df4adf ;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.text-section {
+  text-align: center;
+}
+
+.text-section h2 {
+  margin: 0 0 10px 0;
+  font-size: 2rem;
+}
+
+.text-section p {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.image-section {
+  margin-top: 20px;
+}
+
+.image-section img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/*signup*/
+
+.login-container {
+  display: flex;
+  height: 100vh;
+}
+
+.signup-right {
+  width: 50%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.signup-left {
+  width: 50%;
+  background: linear-gradient(135deg, #520852 0%, #df4adf 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 40px;
+}
+
+/*navbar*/
+.navbar {
+  z-index: 1;
+  background: linear-gradient(135deg, #520852 0%, #df4adf 100%) !important;
+  border-bottom: 2px solid #df4adf;
+}
+
+.navbar-brand {
+  color: white !important;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  color: white !important;
+  font-size: 1rem;
+}
+
+.navbar-nav .nav-link.active {
+  color: #f8f9fa !important; /* Highlight color for active link */
+}
+
+.navbar-nav .nav-link:hover {
+  color: #df4adf !important; /* Hover color */
+}
+
+.navbar-toggler {
+  border-color: white !important;
+}
+
+.navbar-toggler-icon {
+  background-image: none !important; /* Optional: Remove default icon styling */
+}
+
+.navbar-collapse {
+  align-items: center;
+}
+
+.form-control {
+  border-radius: 5px;
+  flex: 1;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+}
+
+.btn-outline-success {
+  border: 2px solid #ffffff; 
+  color: #ffffff; 
+  font-size: 1rem;
+  border-radius: 5px;
+  padding: 0.5rem 1rem; 
+  background-color: transparent; 
+  transition: background-color 0.3s, color 0.3s; 
+}
+
+.btn-outline-success:hover {
+  background-color: #520852; 
+  color: #ffffff; 
+  border-color: #520852; 
+}
+
+
+.me-2 {
+  margin-right: 0.5rem; /* Adjust spacing between elements */
+}
+
+
+.dropdown-menu {
+  background: #ffffff;
+}
+
+.dropdown-menu .dropdown-item {
+  color: #520852;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+.dropdown-divider {
+  border-color: #df4adf;
+}
+
+
+
+
+/* Carousel */
+.carousel {
+  position: relative;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden;
+}
+
+.carousel-inner {
+  height: 100%;
+}
+
+.carousel-item {
+  height: 100%;
+}
+
+.carousel-item img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  color: white;
+  /*text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);*/
+}
+
+.carousel-control-prev, 
+.carousel-control-next {
+  width: 5%;
+  height: 100%;
+}
+
+
+
+/*FAQ*/
+/* Container for the accordion */
+.accordion {
+  width: 70%; /* Set width to 50% of the page width */
+  margin: 30px auto; /* Center the accordion horizontally */
+  border: 1px solid  #df4adf; /* Border color to match previous pages */
+  border-radius: 10px; /* Rounded corners */
+}
+
+/* Accordion Header */
+.accordion-button {
+  background: linear-gradient(135deg, #520852 0%, #df4adf 100%); /* Dark purple background */
+  color: white; /* White text */
+  border: none; /* Remove default border */
+  /*border-radius: 10px 10px 0 0; /* Rounded corners on top */
+  font-size: 1rem; /* Adjust font size */
+}
+
+.accordion-button:not(.collapsed) {
+  background: #df4adf; /* Lighter purple for active header */
+  color: white; /* White text */
+}
+
+.accordion-button:hover {
+  background-color: #6f0066; /* Darker purple on hover */
+}
+
+.accordion-body {
+  background-color: #ffffff; /* White background for the body */
+  color: #520852; /* Dark purple text */
+  font-size: 0.875rem; /* Adjust font size */
+  border-top: 2px solid #df4adf; /* Border to match previous pages */
+}
+
+/* Remove default margin on accordion items */
+.accordion-item {
+  margin-bottom: 0; /* Remove space between items */
+}
+
+/* Rounded corners for bottom of accordion */
+.accordion-item:last-child .accordion-button {
+  border-radius: 0 0 10px 10px; /* Rounded corners on bottom */
+}
+
+
+
+
