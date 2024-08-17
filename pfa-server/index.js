@@ -6,6 +6,10 @@ const session = require('express-session');
 const flash = require('connect-flash'); 
 const cors = require('cors'); // Import the CORS middleware
 const mongoose = require('mongoose');
+const passport = require('passport');
+const userRoute = require('./routes/user');
+const LocalStrategy = require('passport-local');
+const User = require('./models/User');
 // Configure CORS
 app.use(cors({
   origin: 'http://localhost:3000', // Replace with the URL of your frontend application
@@ -15,7 +19,7 @@ app.use(cors({
 
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/templates', {  // BADLOU BESM EL BASE DE DONNEE
+mongoose.connect('mongodb://127.0.0.1:27017/linktree', {  // BADLOU BESM EL BASE DE DONNEE
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -44,6 +48,15 @@ const sessionConfig = session({
 });
 
 app.use(sessionConfig);
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy({
+  usernameField: 'email',
+  passwordField: 'password'
+}, User.authenticate()));
+
+
 app.use(flash());
 app.use(express.static('public')); // T9OLOU ENOU EL JS , CSS , IMAGES ikounou fl dossier public
 
@@ -58,7 +71,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.use('/', EsemRoute); Rakka7 route
+app.use('/api', userRoute);
 
 http.listen(3001, () => {
   console.log('Server listening on port 3001');
