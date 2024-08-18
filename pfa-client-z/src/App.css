@@ -310,6 +310,12 @@ body, html {
 .accordion-item:last-child .accordion-button {
   border-radius: 0 0 10px 10px; /* Rounded corners on bottom */
 }
+.user-image
+{
+  width:50px;
+  height:50px;
+  border-radius: 50%;
+}
 
 
 

@@ -9,24 +9,57 @@ const nodemailer = require("nodemailer");
 
 exports.signup = async (req, res) => {
 
-    const user = await User.findOne({ '$or': [{ username: req.body.username }, { email: req.body.email }] });
+  console.log("this is the body :", req.body)
+  const user = await User.findOne({ '$or': [{ username: req.body.username }, { email: req.body.email }] });
 
-    console.log(req.file);
+  console.log(req.file);
+
+  if (user) {
+
+    return res.json({
+      success: false,
+      message: "Username or email already exist."
+    })
+  }
+  const newUser = new User({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+    image : req.file.path
+  });
+
+  await newUser.save();
+
+  res.json({
+    success: true
+  });
+
+
+}
+
+
+
+exports.googleAuth = async(req, res)=>{
+  const credits = jwt.decode(req.body.credits);
+  console.log("those are the credits : ",credits);
+
+  const user = await User.findOne({ '$or': [{ username: credits.name }, { email: credits.email }] });
+
 
     if (user) {
 
       return res.json({
         success: false,
-        message: "Username or email already exist."
+        message: "Username or email already exists."
       })
     }
     const newUser = new User({
-      username: req.body.username,
-      email: req.body.email,
+      username: credits.name,
+      email: credits.email,
       role: 'client',
-      gender: req.body.sex,
-      password: req.body.password,
-      image : req.file.path
+      image : credits.picture,
+      sub : credits.sub
+
     });
 
     await newUser.save();
@@ -34,32 +67,7 @@ exports.signup = async (req, res) => {
     res.json({
       success: true
     });
-
 }
-exports.visitorSignup = async (req, res) => {
-  const user = await User.findOne({ '$or': [{ username: req.body.username }, { email: req.body.email }] })
-  if (user) {
-    return res.json({
-      success: "false",
-      message: "Username or email already exist."
-    })
-  }
-  const newUser = new User({
-    username: req.body.username,
-    email: req.body.email,
-    role: 'visitor',
-    gender: req.body.sex,
-    password: req.body.password,
-    age: req.body.age,
-    city: req.body.city
-  });
-  await newUser.save();
-
-  res.json({
-    success: true
-  });
-}
-
 
 
 exports.login = async (req, res) => {
@@ -93,9 +101,9 @@ exports.login = async (req, res) => {
         await user.save();
 
         return res.json({
+          token : user.token,
           success: true,
-          token: token,
-          userid: user._id,
+          user: user,
           image : user.image
         });
       } else {
@@ -119,70 +127,6 @@ exports.login = async (req, res) => {
     });
   }
 };
-
-
-
-
-
-
-// exports.getData = async(req, res)=>{
-//     const token = req.headers['token'];
-//     //verification
-//     if(token ){
-//         jwt.verify(token, jwtSecret, async(err , id) => {
-//             const user = await User.findOne({_id : id});
-//             if(user.token && user.token != token){
-//                 return res.json({
-//                     success : false,
-//                     message : "Invalid token."
-//                 }) 
-//             }
-//             if(err){
-//                 return res.json({
-//                     success : false,
-//                     message : "Invalid token."
-//                 })
-//             }
-//             res.json({
-//                 success : true
-//             })
-//         })
-//     }
-// }
-
-
-exports.logout = async (req, res) => {
-  const token = req.headers['token'];
-  if (token) {
-    jwt.verify(token, jwtSecret, async (err, authUser) => {
-      if (authUser.id == req.headers['userid']) {
-        const user = await User.findOne({ _id: authUser.id });
-        if (user.token && user.token != token) {
-          return res.json({
-            success: false,
-            message: "Invalid token."
-          })
-        }
-        if (err) {
-          return res.json({
-            success: false,
-            message: "Invalid token."
-          })
-        }
-        user.token = null;
-        await user.save();
-        res.json({ success: true, message: 'Logged out successfully.' });
-      }
-    })
-  }else{
-    res.json({
-      success : false,
-      message : "Rak makch mconnecty"
-    })
-  }
-}
-
-
 exports.resetPassword = async (req, res) => {
   try {
 
@@ -208,7 +152,7 @@ exports.resetPassword = async (req, res) => {
       });
 
       const info = await smtpTransport.sendMail({
-        from: 'Linktree Support <no-reply@linktree.com>',
+        from: 'LinkUp Support <no-reply@linktree.com>',
         to: email,
         subject: "Password Reset",
         text: "Here is your account resetting password",
@@ -232,7 +176,6 @@ exports.verificationCode = async (req, res) => {
   const user = await User.findOne({ email: email });
   const token = req.params.token;
 
-  console.log(token);
 
   if (user) {
     if (token == user.resetToken) {
@@ -295,31 +238,37 @@ exports.changePassword = async (req, res) => {
   }
 }
 
-exports.googleAuth = async(req, res)=>{
-  const credits = jwt.decode(req.body.credits);
-  console.log(credits)
-
-  const user = await User.findOne({ '$or': [{ username: credits.name }, { email: credits.email }] });
-
-
-    if (user) {
-
-      return res.json({
-        success: false,
-        message: "Username or email already exists."
-      })
-    }
-    const newUser = new User({
-      username: credits.name,
-      email: credits.email,
-      role: 'client',
-      image : credits.picture,
-      sub : credits.sub
-    });
-
-    await newUser.save();
-
+exports.logout = async (req, res) => {
+  const token = req.headers['token'];
+  if (token) {
+    console.log("this is token : ", token)
+    jwt.verify(token, jwtSecret, async (err, authUser) => {
+      if (err) {
+        return res.json({
+          success: false,
+          message: "Invalid token."
+        })
+      }
+      console.log("this is the authuser : " , authUser)
+      if (authUser.id == req.headers['userid']) {
+        const user = await User.findOne({ _id: authUser.id });
+        if (user.token && user.token != token) {
+          return res.json({
+            success: false,
+            message: "Invalid token."
+          })
+        }
+        
+        user.token = null;
+        await user.save();
+        res.json({ success: true, message: 'Logged out successfully.' });
+      }
+    })
+  }else{
     res.json({
-      success: true
-    });
+      success : false,
+      message : "Rak makch mconnecty"
+    })
+  }
 }
+

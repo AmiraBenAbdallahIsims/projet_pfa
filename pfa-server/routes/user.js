@@ -4,14 +4,11 @@ const userController = require('../controllers/user_controller.js');
 const { checkProfileImageFileTypeMiddleware } = require('../middlewares/checkProfileImageFileTypeMiddleware');
 
 router.route('/signup')
-    .post(checkProfileImageFileTypeMiddleware , userController.signup);
-    
-router.post('/visitorsignup',userController.visitorSignup);
+      .post(checkProfileImageFileTypeMiddleware , userController.signup);
 
-// router.post('/designersignup',userController.designerSignup);
+router.post('/googlesignup',userController.googleAuth);  
+
 router.post('/login', userController.login);
-
-router.get('/logout', userController.logout);
 
 router.post('/resetpassword',userController.resetPassword);
 
@@ -19,7 +16,11 @@ router.post('/verificationcode/:token',userController.verificationCode);
 
 router.post('/changepassword/:token',userController.changePassword);
 
-router.post('/googlesignup',userController.googleAuth);
+router.get('/logout', userController.logout);
+
+
+
+
 
 
 module.exports = router;

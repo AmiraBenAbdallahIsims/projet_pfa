@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const ChangeModal = () => {
+  console.log('ahla')
   const [isButtonVisible, setIsButtonVisible] = useState(true);
 
   const validateTitle = (event) => {

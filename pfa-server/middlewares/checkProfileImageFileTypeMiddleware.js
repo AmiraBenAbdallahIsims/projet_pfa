@@ -12,11 +12,9 @@ const checkFileTypeMiddleware = (fieldName, allowedMimeTypes) => (req, res, next
         } else if (err) {
             return res.status(500).send('Internal Server Error: ' + err.message);
         }
-
         if (req.file && allowedMimeTypes.includes(req.file.mimetype)) {
             next();
         } else {
-            console.log(req.file)
             return res.status(400).send('Invalid file type. Please upload a valid file.');
         }
     });

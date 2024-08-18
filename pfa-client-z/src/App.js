@@ -9,6 +9,8 @@ import Signup from "./components/signup"; // Your signup page component^
 import Templates from "./components/Templates";
 import Card from "./components/card";
 import SideNav from "./components/sidenav";
+import Template from "./components/templateComponent/template";
+
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/Templates" element={<Templates />} />
+        <Route path="/templates/:templateName/" element={<Template />} />
       </Routes>
     </Router>
   );

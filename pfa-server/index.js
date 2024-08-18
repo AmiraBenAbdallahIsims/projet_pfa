@@ -19,7 +19,7 @@ app.use(cors({
 
 //
 
-mongoose.connect('mongodb://127.0.0.1:27017/linktree', {  // BADLOU BESM EL BASE DE DONNEE
+mongoose.connect('mongodb://127.0.0.1:27017/linkup', {  // BADLOU BESM EL BASE DE DONNEE
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

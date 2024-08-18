@@ -1,8 +1,41 @@
 import React from "react";
 import "../App.css";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
+
+  const token = localStorage.getItem('token');
+  const navigate = useNavigate();
+  const userImage = localStorage.getItem('userimage');
+  const user = JSON.parse(localStorage.getItem('user'));
+  console.log(user)
+  const handleLogout = async() => {
+      
+      const res = await fetch('http://localhost:3001/api/logout', {
+          method: 'GET',
+          headers: {
+              'Content-Type': 'application/json',
+              'token' : localStorage.getItem('token'),
+              'userid' : user._id,
+          },
+      });
+      console.log('loggin out')
+      const data = await res.json();
+      console.log(data);
+      if(data.success == true){
+          console.log(data);
+          localStorage.removeItem('token');
+          localStorage.removeItem('userid');
+          localStorage.removeItem('user');
+          localStorage.removeItem('userimage');
+          navigate('/');
+      }else{
+          console.log(data.message)
+      }
+      
+  };
+
   return (
     <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -83,12 +116,18 @@ function Navbar() {
               placeholder="Search"
               aria-label="Search"
             />
-            <Link to="/signup" className="btn-outline-success me-2">
-              Sign Up
-            </Link>
-            <Link to="/login" className="btn-outline-success">
-              Login
-            </Link>
+            {!token ? (
+              <>
+                <Link to="/signup" className="btn-outline-success me-2">Sign Up</Link>
+                <Link to="/login" className="btn-outline-success">Login</Link>
+              </>
+            ) :
+            (
+              <>
+                <button className="btn-outline-success me-2" onClick={handleLogout}>Logout</button>
+                <img class="user-image" src={userImage}></img>
+              </>
+                    )}
           </div>
 
           {/* </form> */}
