@@ -1,0 +1,168 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100%;
+  }
+  
+  /* Container styling */
+  .login-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  /* Styling for left and right sides of the container */
+  .login-left, .signup-left {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+  }
+  
+  .login-left {
+    background-color: white;
+  }
+  
+  .signup-left {
+    background: linear-gradient(135deg, #520852 0%, #df4adf 100%);
+    color: white;
+  }
+  
+  .login-right, .signup-right {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+  }
+  
+  .login-right {
+    background: linear-gradient(135deg, #520852 0%, #df4adf 100%);
+  }
+  
+  .signup-right {
+    background-color: white;
+  }
+  
+  /* Logo styling */
+  .logo img {
+    width: 170px;
+    margin-bottom: 30px;
+  }
+  
+  /* Form styling */
+  .form {
+    width: 100%;
+    max-width: 400px; /* Increased width for better layout */
+  }
+  
+  /* Error message styling */
+  .error {
+    color: red;
+    font-size: 0.8rem;
+    margin: 3px 0;
+    display: block;
+  }
+  
+  .forgot-password{
+    cursor: pointer;
+  }
+  
+  /* Container for input fields */
+  .input-container {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  /* Flex container for grouping input fields side by side */
+  .input-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Space between the fields */
+  }
+  
+  /* Styling for input fields */
+  .input-field, .select-field {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  /* Half-width styling for side-by-side input fields */
+  .input-field.half-width {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .input-field.half-width:last-child {
+    margin-right: 0;
+  }
+  
+  /* Styling for select field */
+  .select-field {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  /* Button styling */
+  .large-btn {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background: linear-gradient(135deg, #520852 0%, #df4adf 100%);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  /* Additional button styling */
+  .small-btn {
+    width: 40%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #df4adf;
+    color: #df4adf;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  /* Styling for the text section */
+  .text-section {
+    text-align: center;
+  }
+  
+  .text-section h2 {
+    margin: 0 0 10px 0;
+    font-size: 2rem;
+  }
+  
+  .text-section p {
+    font-size: 1.2rem;
+    margin: 0;
+  }
+  
+  /* Image section styling */
+  .image-section {
+    margin-top: 20px;
+  }
+  
+  .image-section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  

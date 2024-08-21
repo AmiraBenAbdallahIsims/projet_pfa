@@ -1,0 +1,249 @@
+/* Card Container */
+.card-container {
+  width: 100%;
+  max-width: 360px;
+  height: 640px;
+  margin: 40px auto;
+  border-radius: 15px;
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  background-color: #E2BC98;
+}
+
+/* Profile Section */
+.profile-section {
+  position: relative;
+  text-align: center;
+  padding-top: 80px;
+}
+
+/* Background Image with Wavy Effect */
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+}
+
+.background-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-bottom-left-radius: 50% 20%;
+  border-bottom-right-radius: 50% 20%;
+}
+
+/* Profile Image */
+.profile-image {
+  position: relative;
+  margin-top: 5px;
+  z-index: 1;
+}
+
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #E2BC98;
+}
+
+/* Verified Badge */
+.verified-badge {
+  width: 25px;
+  height: 25px;
+  background-color: #B812B8;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  right: 39%;
+  transform: translateX(50%);
+  top: 85px;
+  z-index: 2;
+}
+
+/* Name and Title */
+.name {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 9px 0 3px;
+  color: #A95B00;
+  word-wrap: break-word;
+}
+
+.title {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Menu Section */
+.menu-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  border-top: 1px solid #eee;
+}
+
+.menu-button {
+  flex: 1;
+  padding: 10px;
+  margin: 0 5px;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #f3f4f6;
+  border: none;
+  border-radius: 20px;
+  color: #333;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+.menu-button.active {
+  background-color: #df4adf;
+  color: #fff;
+}
+
+.menu-icons i {
+  font-size: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* Links Section */
+.links-section {
+  padding: 20px;
+}
+
+.link-button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  text-align: center;
+  background-color: #f3f4f6;
+  border: none;
+  border-radius: 20px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+
+.link-button:hover {
+  background-color: #df4adf;
+  color: #fff;
+}
+
+/* Modal Custom Size */
+.custom-modal-size {
+  max-width: 50vw;
+  height: 90vh;
+}
+
+/* Modal Body */
+.modal-body {
+  padding: 20px;
+}
+
+/* Form Controls in Design Tab */
+.form-control {
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+
+.form-control[type="color"] {
+  width: 60px;
+  height: 34px;
+  padding: 0;
+  border: none;
+}
+
+.form-select {
+  margin-bottom: 15px;
+}
+
+/* Text Style Checkboxes */
+.form-check {
+  margin-bottom: 10px;
+}
+
+/* Additional Styles for the Design Tab */
+.tab-content {
+  margin-top: 20px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-footer .btn {
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+.btn-primary {
+  background-color: #DF4ADF;
+  border: none;
+}
+
+.btn-danger {
+  background-color: #d9534f;
+  border: none;
+}
+
+/* Optional: Ensure modal content is responsive */
+@media (max-width: 768px) {
+  .modal-body {
+    padding: 10px;
+  }
+
+  .form-control {
+    font-size: 14px;
+  }
+
+  .modal-footer .btn {
+    padding: 8px 16px;
+  }
+}
+/* Text Style Options */
+.text-style-options {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.btn-style {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.btn-style.active {
+  color: #DF4ADF; /* Highlight color when active */
+}
+
+.form-select, .form-control[type="color"] {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.form-label {
+  margin-bottom: 5px;
+}
+
+/* Assuming you are applying styles dynamically */
+.custom-button {
+  color: var(--font-color);
+  font-family: var(--font-family);
+  font-weight: var(--font-weight);
+  font-style: var(--font-style);
+  text-decoration: var(--text-decoration);
+  border: var(--border-width) solid var(--border-color);
+}

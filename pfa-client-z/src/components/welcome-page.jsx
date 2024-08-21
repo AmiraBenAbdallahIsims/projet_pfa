@@ -3,7 +3,7 @@ import "../App.css";
 
 import Navbar from "./navbar";
 import Footer from "./footer";
-import Carousel from "./carousel";
+import Carousel from "./carousol-heroP/carousel";
 import Faq from "./drop";
 
 import "bootstrap/dist/css/bootstrap.min.css";
