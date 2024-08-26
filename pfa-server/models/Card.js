@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const passportLocalMongoose = require('passport-local-mongoose');
 
-const TemplateSchema = new Schema({
-    templateName: {
+const CardSchema = new Schema({
+    cardName: {
         required : true,
         type: String
     },
@@ -12,11 +12,10 @@ const TemplateSchema = new Schema({
         required : true,
         type : String
     },
-    button : {
-        style : {type : String},
-        content : {type : String}
-    },
-    isModified : Boolean
+    
+    cardDesign : {
+        required : true
+    }
     
 });
-module.exports = mongoose.model('Template', TemplateSchema);
+module.exports = mongoose.model('Card', CardSchema);

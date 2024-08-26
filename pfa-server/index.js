@@ -10,6 +10,10 @@ const passport = require('passport');
 const userRoute = require('./routes/user');
 const LocalStrategy = require('passport-local');
 const User = require('./models/User');
+const cardRoute = require('./routes/card');
+
+
+
 // Configure CORS
 app.use(cors({
   origin: 'http://localhost:3000', // Replace with the URL of your frontend application
@@ -72,6 +76,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api', userRoute);
+app.use('/api/card', cardRoute);
 
 http.listen(3001, () => {
   console.log('Server listening on port 3001');

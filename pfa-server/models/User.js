@@ -5,7 +5,7 @@ const passportLocalMongoose = require('passport-local-mongoose');
 const UserSchema = new Schema({
     username: {
         required : true,
-        unique: true,
+        
         type: String
     },
     email: {
@@ -13,9 +13,12 @@ const UserSchema = new Schema({
         required: false,
         unique: true
     },
+    prenom:{
+        type: String,
+    },
     password : {
       type: String,
-      required: false,
+      required: true,
     },
     role : {
         type : String,
@@ -40,7 +43,8 @@ const UserSchema = new Schema({
         type : String
     },
     image : {
-        type : String
+        type : String,
+        required:true,
     },
     sub : {
         type: String

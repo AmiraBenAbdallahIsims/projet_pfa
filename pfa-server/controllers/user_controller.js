@@ -21,11 +21,21 @@ exports.signup = async (req, res) => {
       message: "Username or email already exist."
     })
   }
+  const today = new Date();
+  const birthDate = new Date(req.body.birthDate);
+  console.log(birthDate);
+  let age = today.getFullYear() - birthDate.getFullYear();
+  console.log(today.getFullYear() , birthDate.getFullYear() , today.getFullYear() - birthDate.getFullYear());
   const newUser = new User({
     username: req.body.username,
+    prenom:req.body.prenom,
     email: req.body.email,
     password: req.body.password,
-    image : req.file.path
+    image : req.file.path,
+    city:req.body.place,
+    gender:req.body.sex,
+    age:age,
+    role:'',
   });
 
   await newUser.save();
