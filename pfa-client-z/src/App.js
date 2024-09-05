@@ -1,16 +1,20 @@
 import React from "react";
-import "./App.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import WelcomePage from "./components/welcome-page"; // Ensure the path is correct
-import Login from "./components/login-signup/login"; // Your login page component
-import Signup from "./components/login-signup/signup"; // Your signup page component^
-import Templates from "./components/Templates";
+import WelcomePage from "./components/Welcome-Page/welcome-page";
+import Login from "./components/login-signup/login";
+import Signup from "./components/login-signup/signup";
+import Templates from "./components/Templates-slide/Templates";
 import Card from "./components/v.card/card";
-import WelcomeDesigner from './components/welcome-designer'
-import SideNav from "./components/sidenav";
-
+import SlideDiv from "./components/Templates-slide/slide/slide-div";
+import SideNav from "./components/general-compo/sidenav";
+import TemplatesLog from "./components/Designer/Templates-menu/Templates-log";
+import Projects from "./components/Designer/Projects-menu/projects";
+import FloatingMetrics from "./components/Designer/Stat-menu/components/FloatingMetrics";
+import Home from "./components/Designer/Stat-menu/stat";
+import Feed from "./components/Designer/Feed-menu/feed";
+import ModifCard from "./components/Designer/modif-card/modif-card";
 
 function App() {
   return (
@@ -19,9 +23,15 @@ function App() {
         <Route path="/" element={<Card />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/welcome-designer" element={<WelcomeDesigner />} />
         <Route path="/Templates" element={<Templates />} />
-        
+        <Route path="/SideNav" element={<SideNav />} />
+        <Route path="/SlideDiv" element={<SlideDiv />} />
+        <Route path="/TemplatesSide" element={<TemplatesLog />} />
+        <Route path="/Projects" element={<Projects />} />
+        <Route path="/FloatingMetrics" element={<FloatingMetrics />} />
+        <Route path="/Home" element={<Home />} />
+        <Route path="/Feed" element={<Feed />} />
+        <Route path="/ModifCard" element={<ModifCard />} />
       </Routes>
     </Router>
   );

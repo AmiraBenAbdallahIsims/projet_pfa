@@ -1,72 +1,49 @@
 import React, { useState } from 'react';
 import { Modal, Button, Nav, Tab, Form } from 'react-bootstrap';
-import { FaBold, FaItalic, FaUnderline } from 'react-icons/fa';
 import PropTypes from 'prop-types';
+import { FaBold, FaItalic, FaUnderline } from 'react-icons/fa';
 
-const ChangeModal = ({ element, onClose, onSave }) => {
-  const [title, setTitle] = useState('');
-  const [subtitle, setSubtitle] = useState('');
-  const [titleError, setTitleError] = useState('');
-  const [fontColor, setFontColor] = useState('#000000');
-  const [fontFamily, setFontFamily] = useState('Arial');
-  const [isBold, setIsBold] = useState(false);
-  const [isItalic, setIsItalic] = useState(false);
-  const [isUnderline, setIsUnderline] = useState(false);
-  const [borderColor, setBorderColor] = useState('#000000');
-  const [borderWidth, setBorderWidth] = useState('0px');
-  const [hasBorder, setHasBorder] = useState(false);
-
-  const validateTitle = (value) => {
-    const regex = /^[A-Za-z0-9_ ]*$/;
-    if (!regex.test(value)) {
-      setTitleError("Title can only contain letters, numbers, and the character _");
-      return false;
-    } else {
-      setTitleError("");
-      return true;
-    }
-  };
-
-  const handleTitleChange = (event) => {
-    const value = event.target.value;
-    setTitle(value);
-    validateTitle(value);
-  };
+const ChangeModal = ({ button = {}, onClose, onSave, handleDeleteButton }) => {
+  const [title, setTitle] = useState(button.title || '');
+  const [subtitle, setSubtitle] = useState(button.subtitle || '');
+  const [link, setLink] = useState(button.link || '');
+  const [fontColor, setFontColor] = useState(button.style?.color || '#000000');
+  const [backgroundColor, setBackgroundColor] = useState(button.style?.backgroundColor || '#ffffff');
+  const [borderColor, setBorderColor] = useState(button.style?.borderColor || '#000000');
+  const [borderWidth, setBorderWidth] = useState(button.style?.borderWidth || '0px');
+  const [fontWeight, setFontWeight] = useState(button.style?.fontWeight || 'normal');
+  const [fontStyle, setFontStyle] = useState(button.style?.fontStyle || 'normal');
+  const [borderStyle, setBorderStyle] = useState(button.style?.borderStyle || 'none');
+  const [isBold, setIsBold] = useState(button.style?.fontWeight === 'bold');
+  const [isItalic, setIsItalic] = useState(button.style?.fontStyle === 'italic');
+  const [isUnderline, setIsUnderline] = useState(button.style?.textDecoration === 'underline');
+  const [action, setAction] = useState(button.action || '');
 
   const handleSaveChanges = () => {
-    if (typeof onSave === 'function') {
-      if (validateTitle(title)) {
-        onSave({
-          title,
-          subtitle,
-          fontColor,
-          fontFamily,
-          isBold,
-          isItalic,
-          isUnderline,
-          borderColor,
-          borderWidth,
-          hasBorder
-        });
-        alert('Changes saved successfully!');
-        onClose(); // Close modal after saving
-      } else {
-        alert('Please correct the title before saving.');
-      }
-    } else {
-      console.error('onSave is not a function');
-    }
-  };
-
-  const handleDeleteButton = () => {
-    alert('Button deleted!');
-    onClose(); // Close modal after deleting
+    let borderWidthInt = parseInt(borderWidth, 10);
+    let finalBorderStyle = borderWidthInt > 0 ? 'solid' : 'none';
+    onSave({
+      title,
+      subtitle,
+      link,
+      style: {
+        color: fontColor,
+        backgroundColor: backgroundColor,
+        borderColor: borderColor,
+        borderWidth: borderWidth,
+        fontWeight: isBold ? 'bold' : 'normal',
+        fontStyle: isItalic ? 'italic' : 'normal',
+        textDecoration: isUnderline ? 'underline' : 'none',
+        borderStyle: finalBorderStyle
+      },
+      action
+    });
   };
 
   return (
     <Modal.Body>
       <div className="modal-header">
-        <h5 className="modal-title">Modify {element}</h5>
+        <h5 className="modal-title">Edit Button</h5>
         <button
           type="button"
           className="btn-close"
@@ -76,7 +53,7 @@ const ChangeModal = ({ element, onClose, onSave }) => {
       </div>
 
       <div className="modal-body">
-        <Tab.Container id="left-tabs-example" defaultActiveKey="content">
+        <Tab.Container defaultActiveKey="content">
           <Nav variant="tabs">
             <Nav.Item>
               <Nav.Link eventKey="content">Content</Nav.Link>
@@ -91,127 +68,89 @@ const ChangeModal = ({ element, onClose, onSave }) => {
 
           <Tab.Content>
             <Tab.Pane eventKey="content">
-              <h6 className="modal-subtitle">Link text</h6>
-              <div className="mb-3">
-                <input
-                  type="text"
-                  className="form-control"
-                  value={title}
-                  onChange={handleTitleChange}
-                  placeholder="Title"
-                  required
-                  pattern="^[A-Za-z0-9_ ]*$"
-                />
-                {titleError && <small className="text-danger">{titleError}</small>}
-              </div>
-              <div className="mb-3">
-                <input
-                  className="form-control"
-                  value={subtitle}
-                  onChange={(e) => setSubtitle(e.target.value)}
-                  rows="2"
-                  placeholder="Subtitle"
-                />
-              </div>
-            </Tab.Pane>
-
-            <Tab.Pane eventKey="action">
-              <h6 className="modal-subtitle">Action</h6>
-              <Form.Group className="mb-3">
-                <Form.Select id="selectAction" aria-label="Select Action">
-                  <option value="website">Website</option>
-                  <option value="facebook">Facebook</option>
-                  <option value="instagram">Instagram</option>
-                  <option value="other">Other</option>
-                </Form.Select>
-              </Form.Group>
-              <h6 className="modal-subtitle">Link</h6>
+              <h6>Title</h6>
               <Form.Control
-                id="contentLink"
-                rows="2"
-                placeholder="Link"
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+
+              <h6>Subtitle</h6>
+              <Form.Control
+                type="text"
+                value={subtitle}
+                onChange={(e) => setSubtitle(e.target.value)}
               />
             </Tab.Pane>
+            <Tab.Pane eventKey="action">
+              <h6>Action</h6>
+              <Form.Control
+                as="select"
+                value={action}
+                onChange={(e) => setAction(e.target.value)}
+              >
+                <option value="">Choose</option>
+                <option value="facebook">Facebook</option>
+                <option value="instagram">Instagram</option>
+                <option value="other">Other</option>
+              </Form.Control>
 
+              <h6>Link</h6>
+              <Form.Control
+                type="text"
+                value={link}
+                onChange={(e) => setLink(e.target.value)}
+              />
+            </Tab.Pane>
             <Tab.Pane eventKey="design">
-              <p className="modal-subtitle">Text Style</p>
-              <div className="text-style-options">
-                <button
-                  type="button"
-                  className={`btn-style ${isBold ? 'active' : ''}`}
+              <h6>Font Color</h6>
+              <Form.Control
+                type="color"
+                value={fontColor}
+                onChange={(e) => setFontColor(e.target.value)}
+              />
+
+              <h6>Background Color</h6>
+              <Form.Control
+                type="color"
+                value={backgroundColor}
+                onChange={(e) => setBackgroundColor(e.target.value)}
+              />
+
+              <h6>Border Color</h6>
+              <Form.Control
+                type="color"
+                value={borderColor}
+                onChange={(e) => setBorderColor(e.target.value)}
+              />
+
+              <h6>Border Width</h6>
+              <Form.Control
+                type="text"
+                value={borderWidth}
+                onChange={(e) => setBorderWidth(e.target.value)}
+              />
+
+              <h6>Font Style</h6>
+              <div className="font-style-buttons">
+                <Button
+                  variant={isBold ? 'primary' : 'light'}
                   onClick={() => setIsBold(!isBold)}
                 >
                   <FaBold />
-                </button>
-                <button
-                  type="button"
-                  className={`btn-style ${isItalic ? 'active' : ''}`}
+                </Button>
+                <Button
+                  variant={isItalic ? 'primary' : 'light'}
                   onClick={() => setIsItalic(!isItalic)}
                 >
                   <FaItalic />
-                </button>
-                <button
-                  type="button"
-                  className={`btn-style ${isUnderline ? 'active' : ''}`}
+                </Button>
+                <Button
+                  variant={isUnderline ? 'primary' : 'light'}
                   onClick={() => setIsUnderline(!isUnderline)}
                 >
                   <FaUnderline />
-                </button>
-              </div>
-              <div className="mb-3">
-                <label htmlFor="fontColor" className="form-label">Font Color</label>
-                <input
-                  type="color"
-                  id="fontColor"
-                  className="form-control"
-                  value={fontColor}
-                  onChange={(e) => setFontColor(e.target.value)}
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="fontFamily" className="form-label">Font Family</label>
-                <select
-                  id="fontFamily"
-                  className="form-select"
-                  value={fontFamily}
-                  onChange={(e) => setFontFamily(e.target.value)}
-                >
-                  <option value="Arial">Arial</option>
-                  <option value="Courier New">Courier New</option>
-                  <option value="Georgia">Georgia</option>
-                  <option value="Times New Roman">Times New Roman</option>
-                  <option value="Verdana">Verdana</option>
-                </select>
-              </div>
-              <div className="mb-3">
-                <label htmlFor="borderColor" className="form-label">Border Color</label>
-                <input
-                  type="color"
-                  id="borderColor"
-                  className="form-control"
-                  value={borderColor}
-                  onChange={(e) => setBorderColor(e.target.value)}
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="borderWidth" className="form-label">Border Width</label>
-                <input
-                  type="number"
-                  id="borderWidth"
-                  className="form-control"
-                  value={borderWidth}
-                  onChange={(e) => setBorderWidth(`${e.target.value}px`)}
-                />
-              </div>
-              <div className="mb-3 form-check">
-                <input
-                  type="checkbox"
-                  id="hasBorder"
-                  className="form-check-input"
-                  checked={hasBorder}
-                  onChange={() => setHasBorder(!hasBorder)}
-                />
-                <label htmlFor="hasBorder" className="form-check-label">Add Border</label>
+                </Button>
               </div>
             </Tab.Pane>
           </Tab.Content>
@@ -219,11 +158,16 @@ const ChangeModal = ({ element, onClose, onSave }) => {
       </div>
 
       <div className="modal-footer">
-        <Button variant="danger" onClick={handleDeleteButton}>
-          <i className="bi bi-trash"></i> Delete
+        {button.title && (
+          <Button variant="danger" onClick={() => handleDeleteButton(button)}>
+            Delete Button
+          </Button>
+        )}
+        <Button variant="secondary" onClick={onClose}>
+          Close
         </Button>
         <Button variant="primary" onClick={handleSaveChanges}>
-          Save changes
+          Save Changes
         </Button>
       </div>
     </Modal.Body>
@@ -231,9 +175,10 @@ const ChangeModal = ({ element, onClose, onSave }) => {
 };
 
 ChangeModal.propTypes = {
-  element: PropTypes.string.isRequired,
+  button: PropTypes.object,
   onClose: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
+  onDelete: PropTypes.func
 };
 
 export default ChangeModal;

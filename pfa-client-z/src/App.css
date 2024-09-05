@@ -94,7 +94,40 @@ body, html {
 
 
 
+/* Carousel */
+.carousel {
+  position: relative;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden;
+}
 
+.carousel-inner {
+  height: 100%;
+}
+
+.carousel-item {
+  height: 100%;
+}
+
+.carousel-item img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  color: white;
+  /*text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);*/
+}
+
+.carousel-control-prev, 
+.carousel-control-next {
+  width: 5%;
+  height: 100%;
+}
 
 
 
@@ -140,6 +173,12 @@ body, html {
 /* Rounded corners for bottom of accordion */
 .accordion-item:last-child .accordion-button {
   border-radius: 0 0 10px 10px; /* Rounded corners on bottom */
+}
+.user-image
+{
+  width:50px;
+  height:50px;
+  border-radius: 50%;
 }
 
 

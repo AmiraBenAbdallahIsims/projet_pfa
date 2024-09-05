@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import '../v.card/card.css'; // Assuming you have a CSS file for styling
+import './card.css'; 
 import bg from '../../assets/marbresearl.png'; // Default background image
 import profile from '../../assets/marbresearl.png'; // Default profile image
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import ChangeModal from './components/btn-change-modal.jsx';
 import ChangeText from './components/Change-text.jsx';
 import ChangeBackgroundModal from './components/change-bg.jsx';
-import { Modal } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
+
 
 const Card = () => {
   const [activeModal, setActiveModal] = useState(null);
@@ -14,11 +16,26 @@ const Card = () => {
   const [show, setShow] = useState(false);
   const [backgroundImage, setBackgroundImage] = useState(bg);
   const [profileImage, setProfileImage] = useState(profile);
+  const [name, setName] = useState({ text: "Tati Ferreira", style: {} });
+  const [title, setTitle] = useState({ text: "Fashion Designer", style: {} });
+  const [titleOrName, setTitleOrName] = useState('');
+  const [buttons, setButtons] = useState([
+    { title: '2024 Collection', subtitle: 'Explore Now', link: '#', style: {}, action: '' },
+    { title: 'My Shop', subtitle: 'Shop Now', link: '#', style: {}, action: '' },
+    { title: 'My Facebook Page', subtitle: 'Connect on Facebook', link: '#', style: {}, action: 'facebook' },
+    { title: 'My Instagram', subtitle: 'Follow on Instagram', link: '#', style: {}, action: 'instagram' }
+  ]);
 
   const handleOpenModal = (modalType, element) => {
     setActiveModal(modalType);
     setActiveElement(element);
     setShow(true);
+
+    if (element === 'name') {
+      setTitleOrName(name.text);
+    } else if (element === 'title') {
+      setTitleOrName(title.text);
+    }
   };
 
   const handleCloseModal = () => {
@@ -35,9 +52,45 @@ const Card = () => {
     setProfileImage(newImage);
   };
 
-  const handleTextChanges = (textProperties) => {
-    // Handle text changes such as updating state or making API calls
-    console.log('Text changes:', textProperties);
+  const handleSaveText = (updatedText) => {
+    if (activeElement === 'name') {
+      setName(updatedText);
+    } else if (activeElement === 'title') {
+      setTitle(updatedText);
+    }
+    handleCloseModal();
+  };
+
+  const handleDeleteText = () => {
+    if (activeElement === 'name') {
+      setName({ text: '', style: {} });
+    } else if (activeElement === 'title') {
+      setTitle({ text: '', style: {} });
+    }
+    handleCloseModal();
+  };
+
+  const handleSaveButton = (updatedButton) => {
+    if (activeElement === null) {
+      // Add new button
+      setButtons([...buttons, updatedButton]);
+    } else {
+      // Update existing button
+      const newButtons = [...buttons];
+      newButtons[activeElement] = updatedButton;
+      setButtons(newButtons);
+    }
+    handleCloseModal();
+  };
+
+  const handleDeleteButton = (buttonToDelete) => {
+    const newButtons = buttons.filter((button) => button !== buttonToDelete);
+    setButtons(newButtons);
+    handleCloseModal();
+  };
+
+  const handleAddNewButton = () => {
+    handleOpenModal('modal', null); // Open modal for adding a new button
   };
 
   return (
@@ -57,70 +110,66 @@ const Card = () => {
         </div>
         <h2
           className="name"
+          style={name.style}
           onClick={() => handleOpenModal('text', 'name')}
         >
-          Tati Ferreira
+          {name.text}
         </h2>
         <p
           className="title"
+          style={title.style}
           onClick={() => handleOpenModal('text', 'title')}
         >
-          Fashion Designer
+          {title.text}
         </p>
       </div>
       <div className="menu-section">
         <button className="menu-button active">V.Card</button>
         <button className="menu-button">Catalogue</button>
         <div className="menu-icons">
-          <i className="bi bi-chat"></i> {/* Bootstrap chat icon */}
-          <i className="bi bi-star"></i> {/* Bootstrap star icon */}
-          <i className="bi bi-three-dots-vertical"></i> {/* Bootstrap more icon */}
+          <i className="bi bi-chat"></i>
+          <i className="bi bi-star"></i>
+          <i className="bi bi-three-dots-vertical"></i>
         </div>
       </div>
       <div className="links-section">
+        {buttons.map((button, index) => (
+          <button
+            key={index}
+            type="button"
+            className="link-button"
+            style={button.style}
+            onClick={() => handleOpenModal('modal', index)}
+          >
+            {button.title}
+          </button>
+        ))}
         <button
           type="button"
-          className="link-button"
-          onClick={() => handleOpenModal('modal', '2024 Collection')}
+          className="link-button add-button"
+          onClick={handleAddNewButton}
         >
-          2024 Collection
-        </button>
-        <button
-          type="button"
-          className="link-button"
-          onClick={() => handleOpenModal('modal', 'My Shop')}
-        >
-          My Shop
-        </button>
-        <button
-          type="button"
-          className="link-button"
-          onClick={() => handleOpenModal('modal', 'My Facebook Page')}
-        >
-          My Facebook Page
-        </button>
-        <button
-          type="button"
-          className="link-button"
-          onClick={() => handleOpenModal('modal', 'My Instagram')}
-        >
-          My Instagram
+          +
         </button>
       </div>
 
       {/* Modal Rendering */}
       <Modal show={show} onHide={handleCloseModal} centered>
         {activeModal === 'modal' && (
-          <ChangeModal 
-            element={activeElement} 
-            onClose={handleCloseModal} 
+          <ChangeModal
+            button={activeElement !== null ? buttons[activeElement] : {}}
+            onSave={handleSaveButton}
+            onClose={handleCloseModal}
+            handleDeleteButton={handleDeleteButton} // Pass delete handler to modal
           />
         )}
         {activeModal === 'text' && (
-          <ChangeText 
-            element={activeElement} 
-            onClose={handleCloseModal} 
-            onSave={handleTextChanges} // Pass the onSave function
+          <ChangeText
+            content={titleOrName}
+            element={activeElement}
+            onClose={handleCloseModal}
+            onSave={handleSaveText}
+            onDelete={handleDeleteText} // Pass delete handler for text
           />
         )}
         {activeModal === 'background' && (
@@ -136,6 +185,7 @@ const Card = () => {
           />
         )}
       </Modal>
+      
     </div>
   );
 };

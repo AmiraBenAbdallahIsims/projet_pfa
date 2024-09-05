@@ -1,0 +1,186 @@
+.metrics-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #e0e7ff, #f8f9fc);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.main-card {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    width: 220px;
+    height: 420px;
+    position: relative;
+    z-index: 10;
+    animation: fadeIn 1.5s ease-in; /* Card fade-in animation */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.circle-background {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: white;
+    border-radius: 50%;
+    opacity: 60%;
+    filter: blur(50px);
+    animation: pulse 3s ease-in-out infinite; /* Pulse animation for the circle */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.6;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1.5);
+        opacity: 1;
+    }
+}
+
+.floating-box {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    width: 120px;
+    text-align: center;
+    animation: float 4s ease-in-out infinite; /* Floating animation for the boxes */
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.floating-box p {
+    font-size: 24px;
+    margin: 10px 0 5px;
+}
+
+.floating-box span {
+    font-size: 12px;
+    color: #999;
+}
+
+.floating-box .icon {
+    font-size: 20px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.box1 {
+    top: 35%;
+    left: 20%;
+    animation-delay: 0s; /* Staggered animation delay */
+}
+
+.box2 {
+    top: 25%;
+    right: 20%;
+    animation-delay: 0.2s;
+}
+
+.box3 {
+    bottom: 25%;
+    left: 20%;
+    animation-delay: 0.4s;
+}
+
+.box4 {
+    bottom: 35%;
+    right: 20%;
+    animation-delay: 0.6s;
+}
+
+.box5 {
+    top: 50%;
+    right: 25%;
+    animation-delay: 0.8s;
+}
+
+.small-circle {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.3;
+    z-index: 1;
+    animation: spin 10s linear infinite; /* Spinning animation for the small circles */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.circle1 {
+    top: 15%;
+    left: 20%;
+}
+
+.circle2 {
+    bottom: 10%;
+    right: 25%;
+}
+
+.circle3 {
+    top: 50%;
+    right: 10%;
+}

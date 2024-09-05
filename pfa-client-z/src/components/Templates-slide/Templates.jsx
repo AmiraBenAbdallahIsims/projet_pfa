@@ -1,9 +1,9 @@
 import React from "react";
-import "../App.css";
+import "../../App.css";
 
-import Navbar from './navbar';
-import Footer from './footer';
-import SlideDiv from "./Templates/slide-div"
+import Navbar from '../general-compo/navbar';
+import Footer from '../general-compo/footer';
+import SlideDiv from "./slide/slide-div"
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
@@ -14,7 +14,7 @@ const Templates = () => {
     const token = localStorage.getItem('token');
     let isUser = false;
     if(token && user){
-        isUser = token == user.token;
+        isUser = token === user.token;
     }
 
   return (

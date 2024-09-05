@@ -1,0 +1,44 @@
+body{
+    height: 100%;
+    
+}
+.div1 div{
+    width:20%;
+    text-align: center;
+}
+
+.div1{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top:2% ;
+}
+
+.imagesContainer{
+    margin-top:50px;
+    margin-bottom:50px;
+}
+
+.imagesContainer img{
+    width: calc(50dvh* 1080 / 2228);
+    height: 50dvh;
+}
+.butt{
+  width: 12%;
+ 
+  border-radius: 5px;
+  color: white;
+  background-color: black;
+  font-size: 12px;
+  height: 40px;
+  
+
+}
+.div2{
+    display:flex;
+    justify-content: center;
+}
+
+.footer{
+    font-size:13px;
+}
