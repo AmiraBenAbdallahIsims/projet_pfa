@@ -1,12 +1,10 @@
-import Card from '../../card';
+import ModifCard from "../../Designer/modif-card/modif-card"
+
 
 export default function TemplateD({templateName}){
-
-    console.log(templateName)
-
     return(
         <div>
-            <Card />
+            <ModifCard templateName={templateName}/>
         </div>
     )
 }

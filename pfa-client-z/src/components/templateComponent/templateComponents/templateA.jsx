@@ -1,15 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
+import ModifCard from "../../Designer/modif-card/modif-card"
 
 const TemplateA = ({ templateName }) => {
-  
-
-  return (
-    <div>
-      <h1>Template A</h1>
-      <p>Template ID: {}</p>
-      
-    </div>
-  );
+    return(
+        <div>
+            <ModifCard templateName={templateName}/>
+        </div>
+    )
 };
 
 export default TemplateA;

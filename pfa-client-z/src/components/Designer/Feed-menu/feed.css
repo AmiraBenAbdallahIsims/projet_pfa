@@ -1,0 +1,48 @@
+.projects-container {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    justify-content: flex-start;
+    align-items: center;
+    background: linear-gradient(135deg, #e0e7ff, #f8f9fc); 
+    height: 100vh; /* Ensure container takes full viewport height */
+}
+
+/* Floating circles */
+.circle1, .circle2, .circle3 {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5); /* Slightly increase visibility */
+    border-radius: 50%;
+    animation: spin 10s linear infinite;
+}
+
+.circle1 {
+    width: 60px;
+    height: 60px;
+    top: 15%;
+    left: 20%;
+}
+
+.circle2 {
+    width: 60px;
+    height: 60px;
+    bottom: 10%;
+    right: 25%;
+}
+
+.circle3 {
+    width: 60px;
+    height: 60px;
+    top: 50%;
+    right: 10%;
+}
+
+/* Keyframe for circle spinning animation */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

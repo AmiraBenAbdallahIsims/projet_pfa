@@ -76,7 +76,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/api', userRoute);
-app.use('/api/card', cardRoute);
+app.use('/api', cardRoute);
 
 http.listen(3001, () => {
   console.log('Server listening on port 3001');

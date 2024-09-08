@@ -8,12 +8,18 @@ const CardSchema = new Schema({
         type: String
     },
 
-    ownerId : {
+    designerId : {
+        required : true,
+        type : String
+    },
+
+    clientId : {
         required : true,
         type : String
     },
     
     cardDesign : {
+        type : String,
         required : true
     }
     

@@ -8,6 +8,7 @@ import TemplateD from './templateComponents/templateD';
 
 
 const Template = () => {
+  console.log('test')
   const { templateName } = useParams();
   switch (templateName) {
     case 'a':

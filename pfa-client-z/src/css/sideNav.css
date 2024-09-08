@@ -1,0 +1,110 @@
+/* Styling for the sidebar only */
+.side-nav {
+  width: 80px; 
+  background-color: #f8f9fa; 
+  height: 95vh;
+  position: fixed;
+  top: 20px;
+  left: 15px;
+  border-radius: 25px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  transition: background-color 0.3s ease, border-radius 0.3s ease;
+  z-index: 1000;
+}
+
+/* Other sidebar styles remain the same */
+
+
+.profile-section {
+  padding-bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.user-profile-pic {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #ddd;
+  padding: 5px;
+  border-radius: 50%;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-link {
+  display: flex;
+  flex-direction: column; /* Stack icons and labels vertically */
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-link i {
+  font-size: 1.5rem;
+  margin-bottom: 5px; /* Add space between the icon and label */
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.nav-label {
+  font-size: 10px; /* Smaller font size for the labels */
+  transition: opacity 0.3s ease;
+}
+
+.nav-item {
+  width: 100%;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #e9ecef;
+  border-radius: 15px; /* Rounding the hover effect */
+}
+
+.active-item {
+  position: relative;
+  background-color: #fff;
+  border-radius: 15px;
+  transition: background-color 0.3s ease, border-radius 0.3s ease;
+}
+
+.active-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 50%;
+  background-color: #df4adf; /* Pink/Purple highlight */
+  border-radius: 0 5px 5px 0;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.settings-section {
+  width: 100%;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+}
+
+/* Add hover effects for smoother transitions */
+.nav-link:hover i {
+  transform: scale(1.2); /* Slightly increase icon size on hover */
+}
+
+.nav-link:hover .nav-label {
+  opacity: 1; /* Make the label more visible on hover */
+}
+
+.nav-link:hover .profile-pic {
+  transform: scale(1.1); /* Slightly increase profile pic size on hover */
+  border-color: #df4adf; /* Change border color on hover */
+}

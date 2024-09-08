@@ -1,0 +1,74 @@
+/* Basic container setup for full-screen view */
+.templates-log-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: linear-gradient(135deg, #e0e7ff, #f8f9fc);   
+    overflow: hidden;
+}
+
+/* Side navigation styling */
+.side-nav-container {
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+/* Main content area */
+.main-content-container {
+    margin-left: 50px;
+    width: calc(100% - 50px);
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+}
+
+/* Floating circles */
+.circle1, .circle2, .circle3 {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5); /* Slightly increase visibility */
+    border-radius: 50%;
+    animation: spin 10s linear infinite;
+}
+
+.circle1 {
+    width: 60px;
+    height: 60px;
+    top: 15%;
+    left: 20%;
+}
+
+.circle2 {
+    width: 50px;
+    height: 50px;
+    bottom: 10%;
+    right: 25%;
+}
+
+.circle3 {
+    width: 60px;
+    height: 60px;
+    top: 50%;
+    right: 10%;
+}
+
+/* Keyframe for circle spinning animation */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
